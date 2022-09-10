@@ -1,0 +1,93 @@
+:root {
+  --dark: #212121;
+  --dark-gray: #424242;
+  --gray: #616161;
+  --white: #fbfcfc;
+  --light-gray: #a6acaf;
+  --pink: #EF9A9A;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 24px;
+
+  color: var(--white);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input,
+button {
+  font-family: inherit;
+  color: inherit;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  padding: 75px 100px 150px;
+
+  background-color: var(--dark);
+}
+
+.calculator-body {
+  /* display: flex;
+  flex-direction: column; */
+
+  flex: 0 1 1080px;
+}
+
+.output-field {
+  width: 100%;
+  margin-bottom: 25px;
+  padding: 20px;
+  border: 3px solid var(--pink);
+
+  border-radius: 10px;
+  font-size: 2rem;
+
+  background-color: var(--dark);
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 15px;
+}
+
+.buttons-item {
+  border: none;
+  padding: 20px;
+
+  border-radius: 10px;
+  font-size: inherit;
+  background-color: var(--dark-gray);
+}
+
+.numbers-theme,
+.primary-theme,
+.operators-theme {
+  font-weight: 600;
+}
+
+.numbers-theme {
+  background-color: var(--gray);
+}
+
+.primary-theme {
+  color: var(--dark-gray);
+  background-color: var(--pink);
+}
+
+.operators-theme {
+  color: var(--pink);
+}
