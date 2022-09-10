@@ -21,4 +21,4 @@ html(lang="en")
         input.output-field(type="text", value="0", readonly)
         .calc-buttons
           each buttonValue in buttonsValues
-            input.calc-buttons-item(type="button", value=buttonValue)
+            button.calc-buttons-item #{buttonValue}
