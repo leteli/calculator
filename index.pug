@@ -1,0 +1,24 @@
+-
+  const buttonsValues = [
+    'Rad', 'Deg', 'x!', '(', ')', '%', 'AC',
+    'Inv', 'sin', 'ln', 7, 8, 9, '÷',
+    'π', 'cos', 'log',  4, 5, 6, 'x',
+    'e', 'tan', '√', 1, 2, 3, '-',
+    'Ans', 'EXP', '^', 0, '.', '=', '+'
+  ];
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Calculator app
+    link(rel="stylesheet" href="./src/styles/app.css")
+  body
+    .container
+      .calc-content
+        input.output-field(type="text", value="0", readonly)
+        .calc-buttons
+          each buttonValue in buttonsValues
+            input.calc-buttons-item(type="button", value=buttonValue)
