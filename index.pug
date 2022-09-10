@@ -2,10 +2,12 @@
   const buttonsValues = [
     'Rad', 'Deg', 'x!', '(', ')', '%', 'AC',
     'Inv', 'sin', 'ln', 7, 8, 9, '÷',
-    'π', 'cos', 'log',  4, 5, 6, 'x',
+    'π', 'cos', 'log',  4, 5, 6, '×',
     'e', 'tan', '√', 1, 2, 3, '-',
-    'Ans', 'EXP', '^', 0, '.', '=', '+'
+    'Ans', 'EXP', 'xⁿ', 0, '.', '=', '+'
   ];
+
+  const operatorsRegexp = /\+|\-|\÷|\.|\%|\(|\)|\×/g;
 
 doctype html
 html(lang="en")
@@ -17,8 +19,15 @@ html(lang="en")
     link(rel="stylesheet" href="./src/styles/app.css")
   body
     .container
-      .calc-content
+      .calculator-body
         input.output-field(type="text", value="0", readonly)
-        .calc-buttons
+        .buttons-grid
           each buttonValue in buttonsValues
-            button.calc-buttons-item #{buttonValue}
+            if typeof buttonValue === 'number'
+              button.buttons-item.numbers-theme #{buttonValue}
+            else if buttonValue === '=' || buttonValue === 'AC'
+              button.buttons-item.primary-theme #{buttonValue}
+            else if buttonValue.search(operatorsRegexp) !== -1
+              button.buttons-item.operators-theme #{buttonValue}
+            else
+              button.buttons-item #{buttonValue}
