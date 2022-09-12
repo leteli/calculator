@@ -5,7 +5,7 @@ const equalsHandler = (e, state) => {
 
   const getAngle = (value) => state.angleUnit === 'Rad' ? value : degToRad(value);
 
-  state.outputExpression.reduce((prevValue, value, i) => {
+  const result = state.outputExpression.reduce((prevValue, value, i) => {
     if (Array.isArray(value)) {
       equalsHandler(value);
     }
@@ -54,6 +54,8 @@ const equalsHandler = (e, state) => {
         return prevValue * value;
     }
   });
+
+  state.resultValue = result;
 };
 
 export default equalsHandler;
