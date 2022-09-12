@@ -10,6 +10,11 @@
 const buttonHandler = (e, state) => {
   const buttonValue = e.target.innerHTML;
   const output = state.outputExpression;
+  const lastIndex = output.length - 1;
+  if (typeof buttonValue === 'number' && typeof output[lastIndex] === 'number') {
+    output[lastIndex] = Number(`${output[lastIndex]}${buttonValue}`);
+    return;
+  }
   switch(buttonValue) {
     case 'Rad':
     case 'Deg':
