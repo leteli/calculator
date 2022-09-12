@@ -1,13 +1,13 @@
 -
   const buttonsValues = [
-    'Rad', 'Deg', 'x!', '(', ')', '%', 'AC',
-    'Inv', 'sin', 'ln', 7, 8, 9, '÷',
-    'π', 'cos', 'log',  4, 5, 6, '×',
-    'e', 'tan', '√', 1, 2, 3, '-',
-    'Ans', 'EXP', 'xⁿ', 0, '.', '=', '+'
+    'Rad', 'x!', '%', '(', ')', '', 'AC',
+    'Deg', 'sin', 'ln', 7, 8, 9, '÷',
+    'Inv', 'cos', 'log',  4, 5, 6, '×',
+    'π', 'tan', '√', 1, 2, 3, '-',
+    'e', 'EXP', 'xⁿ', 0, '.', '=', '+',
   ];
 
-  const operatorsRegexp = /\+|\-|\÷|\.|\%|\(|\)|\×/g;
+  const operators = /\+|\-|\÷|\(|\)|\×/g;
 
 doctype html
 html(lang="en")
@@ -23,11 +23,20 @@ html(lang="en")
         input.output-field(type="text", value="0", readonly)
         .buttons-grid
           each buttonValue in buttonsValues
-            if typeof buttonValue === 'number'
+            if typeof buttonValue === 'number' || buttonValue === '.'
               button.buttons-item.numbers-theme #{buttonValue}
-            else if buttonValue === '=' || buttonValue === 'AC'
-              button.buttons-item.primary-theme #{buttonValue}
-            else if buttonValue.search(operatorsRegexp) !== -1
+            else if buttonValue === '='
+              button.buttons-item.equals.primary-theme #{buttonValue}
+            else if buttonValue === 'AC'
+              button.buttons-item.clear.primary-theme #{buttonValue}
+            else if buttonValue === ''
+              button.buttons-item.backspace #{buttonValue}
+                include src/assets/backspace.svg
+            else if typeof buttonValue === 'string' && buttonValue.search(operators) !== -1
               button.buttons-item.operators-theme #{buttonValue}
+            else if buttonValue === 'Rad'
+              button.buttons-item.radians.active #{buttonValue}
+            else if buttonValue === 'Deg'
+              button.buttons-item.degrees #{buttonValue}
             else
               button.buttons-item #{buttonValue}
