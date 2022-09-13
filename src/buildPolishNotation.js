@@ -7,7 +7,7 @@ const buildPolishNotation = (arr) => {
     '**': 3,
   };
 
-  let result = '';
+  let result = [];
   const operators = [];
 
   arr.forEach((el) => {
@@ -15,27 +15,26 @@ const buildPolishNotation = (arr) => {
       operators.push(el); // если откр.скобка - добавляем к операторам
     } else if (el === ')') {
       // если закр.скобка - берем последний добавленный оператор
-      const lastOp = operators.pop();
+      let lastOp = operators.pop();
       while (lastOp !== '(') { // перебираем все операторы внутри скобок
-        result += lastOp;
+        result.push(lastOp);
         lastOp = operators.pop(); // если там не скобка, идем на новую итерацию
       }
     } else if (typeof el === 'number' && !isNaN(el)) {
-      result += el; // если число - добавляем в рез-т
+      result.push(el); // если число - добавляем в рез-т
     } else { // остаются операторы
-      if (priority[el] <= operators[operators.length - 1]) {
+      while (priority[el] <= priority[operators[operators.length - 1]]) {
       // проверяем, не отложен ли оператор с тем же приоритетом или выше
-      result += operators.pop();
-      } else {
-        operators.push(el);
+        result.push(operators.pop());
       }
+      operators.push(el);
     }
   });
 
-  while (operators.length !== 0) { // проверяем, не осталось ли операций
-    result += operators.pop();
+  while (operators.length > 0) { // проверяем, не осталось ли операций
+    result.push(operators.pop());
   }
-
+  console.log(result);
   return result;
 };
 
