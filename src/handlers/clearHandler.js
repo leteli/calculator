@@ -1,7 +1,11 @@
 const clearHandler = ({ target }, state) => {
   const buttonValue = target.innerHTML;
-  buttonValue === 'AC' ? state.outputExpression = [null]
-     : state.outputExpression.pop();
+  if (buttonValue === 'AC') {
+    state.outputExpression = [];
+    state.resultValue = null;
+  } else {
+    state.outputExpression.pop();
+  }
 };
 
 
