@@ -93,6 +93,7 @@ button {
 }
 
 .backspace {
+  padding-top: 30px;
   color: var(--dark-gray);
   background-color: var(--light);
 }
