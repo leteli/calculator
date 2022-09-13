@@ -17,6 +17,7 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Calculator app
     link(rel="stylesheet" href="./src/styles/app.css")
+    script(type="module" src="./src/index.js")
   body
     .container
       .calculator-body
@@ -32,7 +33,7 @@ html(lang="en")
             else if buttonValue === ''
               button.buttons-item.backspace #{buttonValue}
                 include src/assets/backspace.svg
-            else if typeof buttonValue === 'string' && buttonValue.search(operators) !== -1
+            else if typeof buttonValue === 'string' && buttonValue.search(operators) !== -1;
               button.buttons-item.operators-theme #{buttonValue}
             else if buttonValue === 'Rad'
               button.buttons-item.radians.active #{buttonValue}
