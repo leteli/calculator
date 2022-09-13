@@ -3,8 +3,10 @@ const calcInPolishNotation = (arr) => {
     return 0;
   }
   const result = [];
-  arr.forEach((el) => {
-    if (typeof el === 'number' && !isNaN(el)) {
+  arr
+  .map((el) => isNaN(el) ? el : Number(el))
+  .forEach((el) => {
+    if (!isNaN(el)) {
       result.push(el);
     } else {
       const secondNum = result.pop();
@@ -29,6 +31,7 @@ const calcInPolishNotation = (arr) => {
   if (result.length !== 1) {
     return 'Error!';
   }
+
   return result[0];
 };
 

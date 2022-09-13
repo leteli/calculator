@@ -7,7 +7,7 @@ const buildPolishNotation = (arr) => {
     '**': 3,
   };
 
-  let result = [];
+  const result = [];
   const operators = [];
 
   arr.forEach((el) => {
@@ -34,7 +34,6 @@ const buildPolishNotation = (arr) => {
   while (operators.length > 0) { // проверяем, не осталось ли операций
     result.push(operators.pop());
   }
-  console.log(result);
   return result;
 };
 
