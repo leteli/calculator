@@ -33,7 +33,7 @@ const buttonHandler = (e, state) => {
     return;
   }
 
-  const syntaxError1 = buttonValue === '.' && lastItem === '.';
+  const syntaxError1 = buttonValue === '.' && typeof lastItem === 'string' && lastItem.endsWith('.');
   const syntaxError2 = buttonValue === 0 && lastItem === 0;
   const syntaxError3 = isOperator(buttonValue) && isOperator(lastItem);
 
