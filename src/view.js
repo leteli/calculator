@@ -1,14 +1,15 @@
 import isOperator, { replaceDefault } from './utils/utils.js';
 
 const render = (state) => {
-  const outputField = document.querySelector('.output-field');
-  let result = '0';
+  const output = state.outputExpression;
+  const totalOutput = document.querySelector('.total-output');
+  const resultOutput = document.querySelector('.result-output');
 
-  state.outputExpression.forEach((value, i) => {
-    if (i === 0 && value === 'E') {
+  let result = '';
+
+  output.forEach((value, i) => {
+    if (i === 1 && value === 'E') {
       result = '0';
-    } else if (i === 0 && replaceDefault(value)) {
-      result = value;
     } else if (isOperator(value)) {
       result = `${result} ${value} `;
     } else {
@@ -17,11 +18,15 @@ const render = (state) => {
   });
 
   if (state.resultValue !== null) {
-    outputField.value = state.resultValue;
+    const currentExpr = resultOutput.textContent;
+    totalOutput.textContent = `${currentExpr} = ${state.resultValue}`;
+    resultOutput.textContent = state.resultValue;
   } else {
-    outputField.value = result;
+    totalOutput.textContent = '';
+    resultOutput.textContent = result;
   }
 };
+
 
 // export const renderResult = (state) => {
 //   const outputField = document.querySelector('.output-field');
@@ -55,6 +60,8 @@ export const initialRender = (state) => {
     }
     container.append(buttonEl);
   });
+  const resultOutputEl = document.querySelector('.result-output');
+  resultOutputEl.textContent = 0;
 }
 
 export default render;
