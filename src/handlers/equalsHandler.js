@@ -1,6 +1,6 @@
 // import getTrigFn, { getFactorial, degToRad, isOperator } from '../utils.js';
-import buildPolishNotation from '../buildPolishNotation.js';
-import calcInPolishNotation from '../calcInPolishNotation.js';
+import buildPolishNotation from '../utils/buildPolishNotation.js';
+import calcInPolishNotation from '../utils/calcInPolishNotation.js';
 // продумать приоритет операторов
 
 const equalsHandler = (e, state) => {

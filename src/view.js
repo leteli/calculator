@@ -1,4 +1,4 @@
-import replaceDefault, { isOperator } from './renderUtils.js';
+import isOperator, { replaceDefault } from './utils/utils.js';
 
 const render = (state) => {
   const outputField = document.querySelector('.output-field');
