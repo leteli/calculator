@@ -1,3 +1,5 @@
+import { percentToMul } from './utils.js';
+
 const buildPolishNotation = (arr) => {
   const priority = {
     '+': 1,
@@ -9,8 +11,9 @@ const buildPolishNotation = (arr) => {
 
   const result = [];
   const operators = [];
+  const newArr = percentToMul(arr);
 
-  arr.forEach((el) => {
+  newArr.forEach((el) => {
     if (el === '(') {
       operators.push(el); // если откр.скобка - добавляем к операторам
     } else if (el === ')') {

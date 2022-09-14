@@ -10,6 +10,9 @@ const render = (state) => {
   output.forEach((value, i) => {
     if (i === 1 && value === 'E') {
       result = '0';
+    } else if (output[i - 1] === '%') {
+      result = `${result} × ${value}`;
+      console.log('hey');
     } else if (isOperator(value)) {
       result = `${result} ${value} `;
     } else {

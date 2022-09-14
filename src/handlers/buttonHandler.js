@@ -21,7 +21,7 @@ const buttonHandler = (e, state) => {
 
   const uniteCond1 = buttonValue === '.' && typeof lastItem === 'number';
   const uniteCond2 = typeof buttonValue === 'number' && typeof lastItem === 'number';
-  const uniteCond3 = typeof buttonValue === 'number' && lastItem.endsWith('.');
+  const uniteCond3 = typeof buttonValue === 'number' && typeof lastItem === 'string' && lastItem.endsWith('.');
   
   if (uniteCond1) {
     output[lastIndex] = `${lastItem}${buttonValue}`;
@@ -30,12 +30,6 @@ const buttonHandler = (e, state) => {
 
   if (uniteCond2 || uniteCond3) {
     output[lastIndex] = Number(`${lastItem}${buttonValue}`);
-    return;
-  }
-
-  if (lastItem === '%') {
-    output[lastIndex] = '×';
-    output[lastIndex + 1] = buttonValue / 100;
     return;
   }
 

@@ -39,4 +39,16 @@ export const replaceDefault = (value) => {
 
 export const preventFloatingPoint = (num, precision) => parseFloat(num.toPrecision(precision));
 
+export const percentToMul = (arr) => {
+  return arr.map((el, i) => {
+    if (el === '%') {
+      return '×';
+    }
+    if (arr[i + 1] === '%') {
+      return el / 100;
+    }
+    return el;
+  });
+};
+
 export default isOperator;
