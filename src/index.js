@@ -13,7 +13,7 @@ const app = () => {
       'π', 'tan', '√', 1, 2, 3, '-',
       'e', 'EXP', 'xⁿ', 0, '.', '=', '+',
     ],
-    outputExpression: [],
+    outputExpression: [0],
     resultValue: null,
     isInverted: false,
     angleUnit: 'Rad',

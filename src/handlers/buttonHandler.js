@@ -1,4 +1,4 @@
-import isOperator from '../utils/utils.js';
+import isOperator, { replaceDefault } from '../utils/utils.js';
 
 const buttonHandler = (e, state) => {
 
@@ -8,6 +8,16 @@ const buttonHandler = (e, state) => {
   const output = state.outputExpression;
   const lastIndex = output.length - 1;
   const lastItem = output[lastIndex];
+
+  if (output.length === 1 && output[0] === 0 && replaceDefault(buttonValue)) {
+    output.pop();
+    output.push(buttonValue);
+    return;
+  }
+
+  if (output.length === 1 && output[0] === state.resultValue) {
+    state.resultValue = null;
+  }
 
   const uniteCond1 = typeof buttonValue === 'number' && typeof lastItem === 'number';
   const uniteCond2 = buttonValue === '.' && typeof lastItem === 'number';
