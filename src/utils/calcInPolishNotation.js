@@ -1,3 +1,5 @@
+import { preventFloatingPoint } from './utils.js';
+
 const calcInPolishNotation = (arr) => {
   if (arr.length === 0) {
     return 0;
@@ -6,6 +8,7 @@ const calcInPolishNotation = (arr) => {
   arr
   .map((el) => isNaN(el) ? el : Number(el))
   .forEach((el) => {
+    console.log(el);
     if (!isNaN(el)) {
       result.push(el);
     } else {
@@ -13,20 +16,22 @@ const calcInPolishNotation = (arr) => {
       const firstNum = result.pop();
       switch(el) {
         case '+':
-          result.push(firstNum + secondNum);
+          result.push(preventFloatingPoint(firstNum + secondNum, 9));
           break;
         case '-':
-          result.push(firstNum - secondNum);
+          result.push(preventFloatingPoint(firstNum - secondNum, 9));
           break;
         case '×':
-          result.push(firstNum * secondNum);
+          result.push(preventFloatingPoint(firstNum * secondNum, 9));
           break;
         case '÷':
-          result.push(firstNum / secondNum);
+          result.push(preventFloatingPoint(firstNum / secondNum, 9));
           break;
       }
     }
   });
+
+  console.log(result);
 
   if (result.length !== 1) {
     return 'Error!';

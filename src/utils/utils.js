@@ -28,7 +28,7 @@ const isOperator = (value) => typeof value === 'string' && value.search(/\+|\-|\
 
 export const replaceDefault = (value) => {
   const funcs = ['ln', 'log', '√', 'sin', 'arcsin', 'cos', 'arccos', 'tan', 'arctan'];
-  const otherReplacingValues = ['-', '('];
+  const otherReplacingValues = ['('];
   if (funcs.includes(value)
     || otherReplacingValues.includes(value)
     || !isNaN(value)) {
@@ -36,5 +36,7 @@ export const replaceDefault = (value) => {
   }
   return false;
 };
+
+export const preventFloatingPoint = (num, precision) => parseFloat(num.toPrecision(precision));
 
 export default isOperator;

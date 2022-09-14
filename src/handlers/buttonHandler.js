@@ -19,11 +19,16 @@ const buttonHandler = (e, state) => {
     state.resultValue = null;
   }
 
-  const uniteCond1 = typeof buttonValue === 'number' && typeof lastItem === 'number';
-  const uniteCond2 = buttonValue === '.' && typeof lastItem === 'number';
-  const uniteCond3 = typeof buttonValue === 'number' && lastItem === '.';
+  const uniteCond1 = buttonValue === '.' && typeof lastItem === 'number';
+  const uniteCond2 = typeof buttonValue === 'number' && typeof lastItem === 'number';
+  const uniteCond3 = typeof buttonValue === 'number' && lastItem.endsWith('.');
   
-  if (uniteCond1 || uniteCond2 || uniteCond3) {
+  if (uniteCond1) {
+    output[lastIndex] = `${lastItem}${buttonValue}`;
+    return;
+  }
+
+  if (uniteCond2 || uniteCond3) {
     output[lastIndex] = Number(`${lastItem}${buttonValue}`);
     return;
   }
