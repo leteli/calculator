@@ -11,6 +11,7 @@
 html,
 body {
   margin: 0;
+  padding: 0;
   height: 100%;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 24px;
@@ -20,6 +21,10 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+body {
+  display: flex;
 }
 
 input,
@@ -32,15 +37,15 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 
-  height: 100%;
-  padding: 75px 100px 150px;
+  padding: 50px 100px 100px;
 
   background-color: var(--dark);
 }
 
 .calculator-body {
-  flex: 0 1 1080px;
+  flex: 0 1 700px;
 }
 
 .output-field {
@@ -75,7 +80,7 @@ button {
 
 .buttons-item {
   border: none;
-  padding: 20px;
+  padding: 15px;
 
   border-radius: 10px;
   font-size: inherit;
@@ -83,28 +88,8 @@ button {
   background-color: var(--dark-gray);
 }
 
-.radians,
-.degrees {
-  color: var(--light-gray);
-  background-color: var(--gray);
-}
-
-.radians {
-  border-radius: 25px 25px 0 0;
-}
-
-.degrees {
-  border-radius: 0 0 25px 25px;
-}
-
-.active {
-  font-weight: 700;
-  color: var(--white);
-  text-decoration: underline 4px var(--pink);
-}
-
 .backspace {
-  padding-top: 30px;
+  padding-top: 25px;
   color: var(--dark-gray);
   background-color: var(--light);
 }
@@ -127,4 +112,22 @@ button {
 
 .operators-theme {
   color: var(--pink);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  .buttons-grid {
+    grid-template-columns: 1fr 1.5fr 1.5fr 1.5fr 1fr;
+  }
+
+  .buttons-item {
+    padding: 10px;
+  }
+
+  .backspace {
+    padding-top: 20px;
+  }
 }
