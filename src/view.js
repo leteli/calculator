@@ -49,10 +49,6 @@ export const initialRender = (state) => {
       buttonEl.append(svg);
     } else if (typeof buttonValue === 'string' && buttonValue.search(/\+|\-|\÷|\(|\)|\×/g) !== -1) {
       buttonEl.classList.add('operators-theme');
-    } else if (buttonValue === 'Rad') {
-      buttonEl.classList.add('radians', 'active');
-    } else if (buttonValue === 'Deg') {
-      buttonEl.classList.add('degrees');
     }
     container.append(buttonEl);
   });

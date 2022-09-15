@@ -1,7 +1,5 @@
-// import getTrigFn, { getFactorial, degToRad, isOperator } from '../utils.js';
 import buildPolishNotation from '../utils/buildPolishNotation.js';
 import calcInPolishNotation from '../utils/calcInPolishNotation.js';
-// продумать приоритет операторов
 
 const equalsHandler = (e, state) => {
   const outputInRPN = buildPolishNotation(state.outputExpression);
@@ -11,5 +9,3 @@ const equalsHandler = (e, state) => {
 };
 
 export default equalsHandler;
-
-// проблемы с числами с плавающей точкой

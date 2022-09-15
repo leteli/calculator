@@ -24,7 +24,7 @@ export const getTrigFn = (fnName) => {
 
 export const degToRad = (angle) => angle * (100 / Math.PI);
 
-const isOperator = (value) => typeof value === 'string' && value.search(/\+|\-|\÷|\%|\×/g) !== -1;
+const isOperator = (value) => typeof value === 'string' && value.search(/\+|\-|\÷|\%|\×|\^/g) !== -1;
 
 export const replaceDefault = (value) => {
   const funcs = ['ln', 'log', '√', 'sin', 'arcsin', 'cos', 'arccos', 'tan', 'arctan'];
@@ -83,6 +83,16 @@ export const closingBracketHandler = (state, lastItem) => {
     return;
   }
   output.push(')');
+};
+
+export const getNumWithZeros = (value) => {
+  let zeros = value;
+  let result = '';
+  while (zeros > 0) {
+    result += '0'
+    zeros -= 1;
+  }
+  return Number(`1${result}`);
 };
 
 export default isOperator;

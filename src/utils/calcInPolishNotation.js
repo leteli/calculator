@@ -27,6 +27,9 @@ const calcInPolishNotation = (arr) => {
         case '÷':
           result.push(preventFloatingPoint(firstNum / secondNum, 9));
           break;
+        case '^':
+          result.push(preventFloatingPoint(firstNum ** secondNum, 9));
+          break;
       }
     }
   });
