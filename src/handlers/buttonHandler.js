@@ -67,8 +67,6 @@ const buttonHandler = (e, state) => {
    return;
   }
 
-  console.log(typeof lastItem);
-
   if (typeof lastItem === 'string' && lastItem.endsWith('E')) {
     output[lastIndex] += buttonValue;
     return;

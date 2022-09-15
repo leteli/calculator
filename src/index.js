@@ -29,13 +29,10 @@ const app = () => {
       : classList.contains('clear') ||  classList.contains('backspace') ? clearHandler
       : buttonHandler;
 
-    const handlingEvents = ['click', 'keydown'];
-    
-    handlingEvents.forEach((eventType) => button
-      .addEventListener(eventType, (e) => {
+    button.addEventListener('click', (e) => {
         currentHandler(e, state);
         render(state);
-      }));
+    });
   });
 };
 
