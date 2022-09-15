@@ -12,7 +12,6 @@ const render = (state) => {
       result = '0';
     } else if (output[i - 1] === '%') {
       result = `${result} × ${value}`;
-      console.log('hey');
     } else if (isOperator(value)) {
       result = `${result} ${value} `;
     } else {
@@ -20,7 +19,8 @@ const render = (state) => {
     }
   });
 
-  if (state.resultValue !== null) {
+
+  if (state.resultValue !== null && state.resultValue !== 'Error!') {
     const currentExpr = resultOutput.textContent;
     totalOutput.textContent = `${currentExpr} = ${state.resultValue}`;
     resultOutput.textContent = state.resultValue;

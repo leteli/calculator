@@ -33,7 +33,7 @@ const calcInPolishNotation = (arr) => {
 
   console.log(result);
 
-  if (result.length !== 1) {
+  if (result.length !== 1 || isNaN(result[0])) {
     return 'Error!';
   }
 
