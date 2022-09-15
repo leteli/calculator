@@ -39,13 +39,38 @@ export const replaceDefault = (value) => {
 
 export const preventFloatingPoint = (num, precision) => parseFloat(num.toPrecision(precision));
 
-export const percentToMul = (arr) => {
+export const getNumWithZeros = (value) => {
+  let zeros = Number(value);
+  let result = '';
+  while (zeros > 0) {
+    result += '0'
+    zeros -= 1;
+  }
+  return Number(`1${result}`);
+};
+
+export const applyOperations = (arr) => {
   return arr.map((el, i) => {
     if (el === '%') {
       return '×';
     }
     if (arr[i + 1] === '%') {
       return el / 100;
+    }
+    if (typeof el === 'string' && el.startsWith('√')) {
+      const num = el.slice(1);
+      const sqrt = Math.sqrt(num);
+      return preventFloatingPoint(sqrt, 9);
+    }
+
+    if (typeof el === 'string' && el.endsWith('!')) {
+      const [num, ] = el.split('');
+      return getFactorial(num);
+    }
+
+    if (typeof el === 'string' && el.includes('E')) {
+      const [firstNum, zerosCount] = el.split('E');
+      return Number(firstNum) * getNumWithZeros(zerosCount);
     }
     return el;
   });
@@ -85,14 +110,5 @@ export const closingBracketHandler = (state, lastItem) => {
   output.push(')');
 };
 
-export const getNumWithZeros = (value) => {
-  let zeros = value;
-  let result = '';
-  while (zeros > 0) {
-    result += '0'
-    zeros -= 1;
-  }
-  return Number(`1${result}`);
-};
 
 export default isOperator;

@@ -1,4 +1,4 @@
-import { percentToMul } from './utils.js';
+import { applyOperations } from './utils.js';
 
 const buildPolishNotation = (arr) => {
   const priority = {
@@ -11,7 +11,9 @@ const buildPolishNotation = (arr) => {
 
   const result = [];
   const operators = [];
-  const newArr = percentToMul(arr);
+  const newArr = applyOperations(arr);
+
+  console.log(newArr);
 
   newArr.forEach((el) => {
     if (el === '(') {

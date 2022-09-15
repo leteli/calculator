@@ -1,4 +1,8 @@
-import isOperator, { replaceDefault, minusHandler, closingBracketHandler } from '../utils/utils.js';
+import isOperator, {
+  replaceDefault,
+  minusHandler,
+  closingBracketHandler,
+} from '../utils/utils.js';
 
 const buttonHandler = (e, state) => {
   const rawValue = e.target.innerHTML;
@@ -39,9 +43,44 @@ const buttonHandler = (e, state) => {
   }
 
   if (output.length === 1 && output[0] === 0 && replaceDefault(buttonValue)) {
-    console.log('hey', output[0]);
     output.pop();
     output.push(buttonValue);
+    return;
+  }
+
+  if (lastItem === '√') {
+    output[lastIndex] = `√${buttonValue}`;
+    return;
+  }
+
+  if (typeof lastItem === 'string' && lastItem.startsWith('√') && typeof buttonValue === 'number') {
+    output[lastIndex] += buttonValue;
+    return;
+  }
+
+  if (buttonValue === 'EXP' && lastItem === 0) {
+    return;
+   }
+
+  if (buttonValue === 'EXP' && lastItem !== 0) {
+   output[lastIndex] += 'E';
+   return;
+  }
+
+  console.log(typeof lastItem);
+
+  if (typeof lastItem === 'string' && lastItem.endsWith('E')) {
+    output[lastIndex] += buttonValue;
+    return;
+  }
+
+  if (buttonValue === 'x!') {
+    output[lastIndex] += '!'; 
+    return;
+  }
+
+  if (buttonValue === 'xⁿ') {
+    output.push('^');
     return;
   }
 
@@ -67,33 +106,7 @@ const buttonHandler = (e, state) => {
     return 'Error!';
   }
 
-  switch(buttonValue) {
-    case 'Rad':
-    case 'Deg':
-      state.angleUnit = buttonValue;
-      break;
-    case 'Inv':
-      state.isInverted = !state.isInverted;
-      break;
-    case 'x!':
-      output.push('!');
-      break;
-    case 'EXP':
-      output.push('E');
-      break;
-    case 'xⁿ':
-      output.push('**');
-      break;
-    case 'π':
-      output.push(Math.PI);
-      break;
-    case 'e':
-      output.push(Math.E);
-      break;
-    default:
-      output.push(buttonValue);
-      break;
-  }
+  output.push(buttonValue); // default!
 };
 
 export default buttonHandler;
