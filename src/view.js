@@ -1,4 +1,4 @@
-import isOperator, { replaceDefault } from './utils/utils.js';
+import isOperator from './utils/utils.js';
 
 const render = (state) => {
   const output = state.outputExpression;
@@ -29,13 +29,6 @@ const render = (state) => {
     resultOutput.textContent = result;
   }
 };
-
-
-// export const renderResult = (state) => {
-//   const outputField = document.querySelector('.output-field');
-//   console.log(state.resultValue);
-//   outputField.value = state.resultValue;
-// }
 
 export const initialRender = (state) => {
   const container = document.querySelector('.buttons-grid');
