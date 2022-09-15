@@ -7,13 +7,14 @@ const app = () => {
 
   const state = {
     buttonValues: [
-      'Rad', 'x!', '%', '(', ')', '', 'AC',
-      'Deg', 'sin', 'ln', 7, 8, 9, '÷',
-      'Inv', 'cos', 'log',  4, 5, 6, '×',
-      'π', 'tan', '√', 1, 2, 3, '-',
-      'e', 'EXP', 'xⁿ', 0, '.', '=', '+',
+      '%', '(', ')', '', 'AC',
+      'x!', 7, 8, 9, '÷',
+      'xⁿ',  4, 5, 6, '×',
+      '√', 1, 2, 3, '-',
+      'EXP', 0, '.', '=', '+',
     ],
     outputExpression: [0],
+    default: true,
     resultValue: null,
     isInverted: false,
     angleUnit: 'Rad',
