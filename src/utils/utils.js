@@ -51,20 +51,38 @@ export const percentToMul = (arr) => {
   });
 };
 
-export const minusHandler = (state, buttonValue, lastIndex, lastItem) => {
+export const minusHandler = (state, lastIndex, lastItem) => {
   const output = state.outputExpression;
   const reversed = {
     '+': '-',
     '-': '+',
   };
-
-  if (output.length === 1 && output[0] === 0) {
+  if (output.length === 1 && output[0] === 0 && state.default) {
     output[lastIndex] = '-';
   } else if (lastItem in reversed) {
     output[lastIndex] = reversed[lastItem];
   } else {
     output.push('-');
   }
+};
+
+export const closingBracketHandler = (state, lastItem) => {
+  const output = state.outputExpression;
+  let openingBracketsCount = 0;
+  let closingBracketsCount = 1;
+
+  output.forEach((el) => {
+    if (el === '(') {
+      openingBracketsCount += 1;
+    }
+    if (el === ')') {
+      closingBracketsCount += 1;
+    }
+  });
+  if (closingBracketsCount > openingBracketsCount || lastItem === '(') {
+    return;
+  }
+  output.push(')');
 };
 
 export default isOperator;

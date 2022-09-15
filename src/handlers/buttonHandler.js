@@ -1,17 +1,30 @@
-import isOperator, { replaceDefault, minusHandler } from '../utils/utils.js';
+import isOperator, { replaceDefault, minusHandler, closingBracketHandler } from '../utils/utils.js';
 
 const buttonHandler = (e, state) => {
-
   const rawValue = e.target.innerHTML;
   const buttonValue = isNaN(rawValue) ? rawValue : Number(rawValue);
 
+  const lastIndex = state.outputExpression.length - 1;
+  const lastItem = state.outputExpression[lastIndex];
+
+  if ((state.outputExpression.length === 1 && lastItem === state.resultValue)) {
+    state.resultValue = null;
+  }
+
+  if (lastItem === 'Error!') {
+    state.outputExpression = [0];
+  }
+
   const output = state.outputExpression;
-  const lastIndex = output.length - 1;
-  const lastItem = output[lastIndex];
 
   if (buttonValue === '-') {
-    minusHandler(state, buttonValue, lastIndex, lastItem);
+    minusHandler(state, lastIndex, lastItem);
+    state.default = false;
     return;
+  }
+
+  if (state.default) {
+    state.default = false;
   }
 
   const negativeNumCond = isOperator(output[lastIndex - 1]) || output[lastIndex - 1] === '(' || lastIndex === 0;
@@ -20,14 +33,16 @@ const buttonHandler = (e, state) => {
     return;
   }
 
-  if (output.length === 1 && output[0] === 0 && replaceDefault(buttonValue)) {
-    output.pop();
-    output.push(buttonValue);
+  if (buttonValue === ')') {
+    closingBracketHandler(state, lastItem);
     return;
   }
 
-  if (output.length === 1 && output[0] === state.resultValue) {
-    state.resultValue = null;
+  if (output.length === 1 && output[0] === 0 && replaceDefault(buttonValue)) {
+    console.log('hey', output[0]);
+    output.pop();
+    output.push(buttonValue);
+    return;
   }
 
   const uniteCond1 = buttonValue === '.' && typeof lastItem === 'number';

@@ -9,6 +9,7 @@ const clearHandler = ({ target }, state) => {
   } else if (buttonValue === 'AC' || state.outputExpression.length === 1) {
     state.outputExpression = [0];
     state.resultValue = null;
+    state.default = true;
   } else {
     output.pop();
   }
